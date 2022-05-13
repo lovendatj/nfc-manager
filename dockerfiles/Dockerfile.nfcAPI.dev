@@ -1,0 +1,11 @@
+FROM node:latest
+
+WORKDIR /code
+COPY /server/api/ .
+
+
+# RUN npm install
+
+# EXPOSE 8000
+
+# CMD ["npm", "start"]

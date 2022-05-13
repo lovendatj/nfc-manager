@@ -1,0 +1,30 @@
+version: '3'
+
+services:
+  nfc-db:
+    image: postgres:latest
+    container_name: nfc-db
+    restart: always
+    env_file: 
+      - ./envfiles/nfc.db.env
+    build:
+      context: .
+      dockerfile: dockerfiles/Dockerfile.db.dev
+    volumes:
+      - ./server/init_sql:/docker-entrypoint-initdb.d
+    ports:
+      - "5432:5432"
+      
+  # nfc-api:
+  #   image: node:latest
+  #   container_name: nfc-api
+  #   restart: always
+  #   env_file: 
+  #     - ./envfiles/nfc.api.env
+  #   build:
+  #     context: .
+  #     dockerfile: dockerfiles/Dockerfile.nfcAPI.dev
+  #   links:
+  #     - nfc-db
+  #   ports: 
+  #     - "3000:3000"
